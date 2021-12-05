@@ -1,0 +1,15 @@
+body {
+    background-image: url(./deathstar.jpg) ;
+    background-size: cover;
+    color: whitesmoke;
+
+}
+
+header {
+    height: 100px;
+    position: center;
+
+}
+
+
+
