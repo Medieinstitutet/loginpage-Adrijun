@@ -5,11 +5,25 @@ body {
 
 }
 
-header {
-    height: 100px;
-    position: center;
-
+#mainTextLoggedIn {
+    color: black;
+    margin-left: 500px;
+    font-size: 3.5rem;
 }
+
+#outLogBtn {
+margin-left: 650px;
+margin-top: 300px;
+border-radius: 5px;
+    
+    position: relative;
+    height: 50px;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+
 
 
 

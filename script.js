@@ -1,83 +1,74 @@
-const correctUserName = "janne";
-const correctPassWord = "test";
+function startPage() {    // Function for startpage 
+    let header = document.getElementById("header") //  Get the Header element
+    let main = document.getElementById("main")    //  Get the Main element
 
-//Get elements //
-const header = document.querySelector("header");
-const main = document.querySelector("main");
+    let userNameInput = document.createElement("input")   // username input element
+    userNameInput.placeholder = "Sithlord"                 // text in input
 
-//Show welcome page in function
-function welcomePage() {
+    let passWordInput = document.createElement("input")  //input field for passWord
+    passWordInput.placeholder = "Password"                 // text in password
 
-    //input field for userName
-    const userNameInput = document.createElement("input");
-    userNameInput.placeholder = "Username";
+    let mainContent = document.createElement("h1")            // create h1
+    mainContent.textContent = "Username and password"         // Textcontent 
+    main.append(mainContent);                                    // append maintext to main
 
-    //input field for passWord
-    const passWordInput = document.createElement("input");
-    passWordInput.placeholder = "Password";
+    let logInBtn = document.createElement("button");   // create button 
+    logInBtn.textContent = "Join";                    // button log in text 
+    header.append(userNameInput, passWordInput, logInBtn);  // Inputs + button in html 
+
+    logInBtn.addEventListener("click", () => {             //Eventlistener for login button
+
+        let nameInputValue = userNameInput.value;          // Eventlistener catch up username input value
+        let passWordInputValue = passWordInput.value;      // Evenetlistener catch up password input
 
 
-    //button text login
-    const logInBtn = document.createElement("button");
-    logInBtn.textContent = "Log in";
 
-
-    header.append(userNameInput, passWordInput, logInBtn);
-
-    //h2 - text Please enter your username and password to log in.
-    const mainText = document.createElement("h2");
-    mainText.textContent = "Enter your name and password";
-    mainText.id = "mainText"
-    main.append(mainText);
-
-    //Click button to go to success page or error page
-    logInBtn.addEventListener("click", () => {
-
-        const nameInputValue = userNameInput.value;
-        const passWordInputValue = passWordInput.value;
-
-        if (nameInputValue === correctUserName && passWordInputValue === correctPassWord) {
-            localStorage.setItem("Username", correctUserName);
-            localStorage.setItem("Password", correctPassWord);
+        if (nameInputValue === rightUserName && passWordInputValue === rightPassWord) { //If correct username and password input  set to localstorage
+            localStorage.setItem("Username", rightUserName);
+            localStorage.setItem("Password", rightPassWord);
 
             location.reload();
         }
-        //if wrong userName and/or passWord - show error page
-        //Still show input fields and button
-        //Show h2 Wrong name jedi
-        else if (nameInputValue !== correctUserName && passWordInputValue !== correctPassWord) {
-            mainText.textContent = "Wrong name jedi!";
+
+
+
+
+        else if (nameInputValue !== rightUserName && passWordInputValue !== rightPassWord) {  // else if wrong 
+            mainContent.textContent = "Wrong name jedi!";  // shows in maintext if wrong username / password
         }
     });
+
 }
 
-//Show success page:
-//No input fields
-function loggedInPage() {
+function loggedIn() {     // Function for logged in
 
-    //Button with text log out
-    const logOutBtn = document.createElement("button");
-    logOutBtn.textContent = "Log out";
 
-    header.append(logOutBtn);
+    let outLogBtn = document.createElement("button");  //creates log out button 
+    outLogBtn.id = "outLogBtn"                        // ID for style in css
+    outLogBtn.textContent = "Log out";                  // content in logout button
+    header.append(outLogBtn);                           // append logout button to header
 
-    //h2 - text: Welcome to the Darkside
-    const mainText = document.createElement("h2");
-    mainText.textContent = "Welcome to the Darkside";
-    mainText.id = "mainText"
-    main.append(mainText);
 
-    //LocalStorage should clear and reload
-    logOutBtn.addEventListener("click", () => {
+    let mainContent = document.createElement("h1");     // creates h1 
+    mainContent.id = "mainTextLoggedIn"                 // ID for style in css
+    mainContent.textContent = "Welcome to the Darkside";  // maintext in h2
+
+    main.append(mainContent);
+
+
+    outLogBtn.addEventListener("click", () => {     // click logout button and localstorage will be cleared
         localStorage.clear();
         location.reload();
     });
 }
 
-if (localStorage.getItem('Username') === null) {
-    welcomePage();
+if (localStorage.getItem('Username') === null) {  //if clear startpage
+    startPage();
 }
 else {
-    loggedInPage();
+    loggedIn();                                     // else stay logged in
 }
 
+
+let rightUserName = "janne";    //Username    
+let rightPassWord = "test";     // Password
